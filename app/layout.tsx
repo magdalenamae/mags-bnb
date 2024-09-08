@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
-
+import Navbar from "./components/navbar/NavBar";
+import ClientOnly from "./components/ClientOnly";
+import Modal from "./components/Modals/Modal";
 
 export const metadata: Metadata = {
   title: "Mags BNB",
@@ -19,6 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={fonts.className}>
+        <ClientOnly>
+          <Modal
+            title="Title"
+            isOpen
+           
+          />
+          <Navbar />
+        </ClientOnly>
         {children}
       </body>
     </html>

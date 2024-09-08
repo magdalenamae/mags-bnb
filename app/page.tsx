@@ -1,8 +1,8 @@
 
 export default function Home() {
   return (
-    <div>
-      Hello Mags BNB
+    <div className="text-rose-500 text-2xl">
+      Hello Magsbnb
     </div>
   );
 }

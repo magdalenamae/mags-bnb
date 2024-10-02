@@ -1,6 +1,6 @@
 
 'use client'
-import { useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
 
@@ -9,13 +9,12 @@ interface ModalProps {
     onClose: () => void;
     onSubmit: () => void;
     title?: string;
-    body?: string;
-    footer?: string;
+    body?: ReactElement;
+    footer?: ReactElement;
     actionLabel?: string;
     disabled?: boolean;
     secondaryAction?: () => void;
     secondaryActionlabel?: string;
-
 }
 
 const Modal: React.FC<ModalProps > = ({
@@ -84,9 +83,9 @@ const Modal: React.FC<ModalProps > = ({
 							</div>
 							{/*body*/}
 							<div className="relative p-6 flex-auto">
-								<p className="my-4 text-lg leading-relaxed">
+								<div className="my-4 text-lg leading-relaxed">
 									{body}
-								</p>
+								</div>
 							</div>
 							{/*footer*/}
 							<div className="flex flex-col gap-2 p-6">
@@ -105,6 +104,7 @@ const Modal: React.FC<ModalProps > = ({
                                         onClick={handleModalSubmit}
                                     />
 								</div>
+                                {footer}
 							</div>
 						</div>
 					</div>

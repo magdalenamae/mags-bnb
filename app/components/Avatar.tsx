@@ -14,7 +14,7 @@ const Avatar: React.FC<AvatarProps> = ({
             className="rounded-full"
             height={30}
             width={30}
-            src={src || "/avatar.png"}
+            src={src || "/images/avatar.svg"}
             alt="Avatar"
         />
     )

@@ -21,9 +21,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ image, currentUser }) => {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
 
-    // Log currentUser to see its value
-    console.log('Current user:', currentUser);
-
     return (
         <div className='relative'>
             <div className='flex flex-row items-center gap-3'>

@@ -21,9 +21,11 @@ import Heading from "../Heading";
 import Input from "../Inputs/Input";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { log } from "console";
 
 const LoginModal = () => {
     const router = useRouter();
+
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
@@ -58,6 +60,11 @@ const LoginModal = () => {
             }
         })
     }, []);
+
+    const toggle = useCallback(() => {
+        loginModal.onClose();
+        registerModal.onOpen();
+    }, [loginModal, registerModal]);
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -119,16 +126,16 @@ const LoginModal = () => {
                     "
                 >
                     <div>
-                        Already have an account?
+                        First time using Magsbnb?
                     </div>
                     <div className="
                             text-nutral-800
                             cursor-pointer
                             hover: underline
                         "
-                        onClick={registerModal.onClose}
+                        onClick={toggle}
                     >
-                        Login
+                        Create an account
                     </div>
                 </div>
             </div>

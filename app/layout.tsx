@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/navbar/NavBar";
+import ClientOnly from "./components/ClientOnly";
 
+import RegisterModal from "./components/Modals/RegisterModal";
+import LoginModal from "./components/Modals/LoginModal";
+import RentModal from "./components/Modals/ListingModal";
+
+import ToastProvider from "./providers/ToastProvider";
+import getCurrentUser from "./actions/getCurrentUser";
 
 export const metadata: Metadata = {
   title: "Mags BNB",
@@ -11,15 +19,26 @@ export const metadata: Metadata = {
 const fonts = Nunito({
   subsets: ["latin"],
 });
-export default function RootLayout({
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={fonts.className}>
-        {children}
+        <ClientOnly>
+          <ToastProvider />
+          <RentModal />          
+          <LoginModal />
+          <RegisterModal />
+          <Navbar currentUser={currentUser} />
+        </ClientOnly>
+        <div className="pb-20 pt-18">
+          {children}
+        </div>
       </body>
     </html>
   );

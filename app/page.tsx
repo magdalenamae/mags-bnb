@@ -4,8 +4,14 @@ import EmptyState from "./components/EmptyState";
 import getListings from "./actions/getListings";
 import ListingCard from "./components/Listings/ListingCard";
 
-export default async function Home() {
-  const listings = await getListings();
+interface Props {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>,
+}
+
+export default async function Home({ searchParams }: Props) {
+  const category = (await searchParams).category;
+  const listings = await getListings(category);
+
   console.log(listings);
   if (listings.length === 0) {
     return (

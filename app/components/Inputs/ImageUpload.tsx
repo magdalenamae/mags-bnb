@@ -16,12 +16,21 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps>  = ({ onChange, value }) => {
 
     const handleUpload = useCallback((result: any) => {
-        onChange(result.info.secure_url);
+        onChange(result.secure_url);
     }, [onChange]);
 
     return (
         <div>
-            <CldUploadWidget uploadPreset="mags-bnb" onUpload={handleUpload}>
+
+            <CldUploadWidget
+                uploadPreset="mags-bnb" 
+                onSuccess={(result, { widget }) => {
+                    handleUpload(result?.info);  // { public_id, secure_url, etc }
+                  }}
+                onQueuesEnd={(result, { widget }) => {
+                    widget.close();
+                }}
+                >
                 {({ open }) => {
                     return (
                         <div 
@@ -47,7 +56,7 @@ const ImageUpload: React.FC<ImageUploadProps>  = ({ onChange, value }) => {
                             <div className="font-semibold text-lg">
                                 Click to upload
                             </div>
-                            {value && (
+                            {value && ( 
                                 <div className="absolute inset-0 w-full h-full">
                                     <Image 
                                         alt="Upload"

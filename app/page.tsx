@@ -6,7 +6,6 @@ import ListingCard from "./components/Listings/ListingCard";
 
 export default async function Home() {
   const listings = await getListings();
-  console.log(listings);
   if (listings.length === 0) {
     return (
       <ClientOnly>
@@ -20,7 +19,7 @@ export default async function Home() {
     <ClientOnly>
       <Container>
         <div className="
-          pt-24 
+          pt-14rem
           grid 
           grid-cols-1 
           sm:grid-cols-2 

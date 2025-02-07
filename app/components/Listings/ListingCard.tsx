@@ -56,14 +56,16 @@ const ListingCard: React.FC<ListingCardProps> = ({
         const end = new Date(reservation.endDate);
 
         return `${format(start, "PP")} - ${format(end, "PP")}`;
-
     }, [reservation]);
+    
     return (
-        <div onClick={() => router.push(`/listings/${data.id}`)} className="col-span-1 cursor-pointer group">
+        <div onClick={() => router.push(`/listings/${data.id}`)} className="col-span-1 cursor-pointer group bg-clip-padding pt40">
             <div className="flex flex-col gap-2 w-full">
                 <div className="aspect-square w-full relative overflow-hidden rounded-xl">
                     <Image src={data.imageSrc} layout="fill" objectFit="cover" alt={data.title} />
                 </div>
+                <div className="font-semibold">{data.title}, {data.locationValue}</div>
+                <div className="font-thin">{data.guestCount} guests . {data.roomCount} bedroom . {data.bathroomCount} bathroom</div>
             </div>
         </div>
     )

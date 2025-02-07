@@ -12,3 +12,6 @@ html, body, :root {
 .leaflet-top {
     z-index: 0 !important;
 }
+.pt-14rem {
+    padding-top: 14rem;
+}
